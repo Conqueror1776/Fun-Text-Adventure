@@ -1,8 +1,12 @@
 from main import type_out, type_out_input
 from player import Player
 from time import sleep
+from college.begin_college import go_to_college
+from gap_year.gap_year import take_gap_year
+from nothing.nothing import do_nothing
+from work.new_work import work
 
-def beginning(Player):
+def beginning(player):
     type_out('\nYour story begins in highschool...\n')
     sleep(.5)
     type_out('I know... everyone hates high school, but don\'t worry, since this story begins with the end of highschool...')
@@ -29,7 +33,24 @@ def beginning(Player):
                 answer = type_out_input('\nLast chance or I\'m giving up on you...\nJust type out \'y\'\n')
                 if (answer!='y'): type_out('\nI gave you a chance... sorry')
 
+def choose_path_switcher(answer, player):
+    if (answer == 'college'):
+        go_to_college(player)
+    elif (answer == 'gap year'):
+        take_gap_year(player)
+    elif (answer == 'work'):
+        work(player)
+    elif (answer == 'nothing'):
+        do_nothing(player)
+    else:
+        answer = type_out_input('\nI didn\'t get that. Try again\n').lower()
+        choose_path_switcher(answer, player)
+
+def choose_path(player):
+    type_out('So, you have a few options:\nYou can either go to college, take a gap year, enter the workforce, or... well.. or do nothing...')
+    answer = type_out_input('\nWhat\'s it going to be?\n(college / gap year / work / nothing)\n').lower()
+    choose_path_switcher(answer, player)
 
 
-player = Player()
-beginning(player)
+#player = Player()
+#beginning(player)

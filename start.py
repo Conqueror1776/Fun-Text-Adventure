@@ -52,5 +52,5 @@ def choose_path(player):
     choose_path_switcher(answer, player)
 
 
-#player = Player()
-#beginning(player)
+player = Player()
+beginning(player)
